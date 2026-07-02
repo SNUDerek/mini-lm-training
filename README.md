@@ -84,6 +84,10 @@ uv run scripts/create_val_split.py \
 --val-path /data/val_data
 ```
 
+## deduplication (WIP)
+
+there are two WIP deduplication scripts that use `Simhash` to get candidate matches, then use exact jaccard similarity over word n-grams to folder the candidates. the scripts are still being worked on, and the identified matches will be added to the /info directory.
+
 ## fit tokenizer
 
 creates a byte-pair encoding tokenizer, converts to `transformers` tokenizer with chatML template, and saves it.
