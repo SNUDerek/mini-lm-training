@@ -127,7 +127,8 @@ docker build -t nanotron:latest ./nanotron
 
 - coded in antigravity
 - ai tools used: antigravity ide, gemini (web and ide extension), claude (web, claude code extension), openai gpt (web, codex extension)
-- unless indicated below, scripts by me, reviewed/corrected by ai
-- Old Bailey XML parsing functions by chatgpt
-- nanotron Dockerfile by chatgpt
-- training code based on nanotron example, edited by me, corrected by ai
+- unless indicated below, scripts by me, reviewed/corrected by AI:
+    - Old Bailey XML parsing functions by chatgpt
+    - deduplication script outlined by me, drafted by AI, modified by me
+    - nanotron Dockerfile by chatgpt
+    - training code based on nanotron example, edited by me, corrected by AI
