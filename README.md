@@ -13,9 +13,15 @@ target data is English-language public domain texts (cutoff date approximately 1
 - [x] pretraining data processing scripts (gutenberg, ncse v2, oldbailey)
 - [x] pretraining tokenizer fitting and dataset packing scripts
 - [x] pretraining datasets - training, validation 
-- [] nanotron-based pretraining script and config
-- [] nanotron-based pretraining run
-- [] gutenberg SFT dataset processing scripts (extract dialogs from target books)
+- [ ] nanotron-based pretraining script and config
+- [ ] nanotron-based pretraining run
+- [ ] gutenberg SFT dataset processing scripts (extract dialogs from target books)
+
+## initial setup
+
+install `uv` if needed
+
+update with `uv sync`
 
 ## data processing
 
@@ -26,6 +32,17 @@ uv run scripts/preprocessing/process_gutenberg.py \
 --input-path /data/datasets/gutenberg \
 --output-path /data/train_data/gutenberg \
 --workers 8
+```
+
+### british library books
+
+NOTE: script technically untested, i processed from notebook (and then copied code to script)
+
+```
+uv run scripts/preprocessing/process_blbooks.py \
+--jsonl-dir /data/datasets/british-library-books/jsonl \
+--raw-outpath /data/train_data/blbooks/raw \
+--clean-outpath /data/train_data/blbooks/cleaned
 ```
 
 ### ncse v2
@@ -45,6 +62,17 @@ uv run scripts/preprocessing/process_old_bailey.py \
 --input-path /data/datasets/OldBaileyCorpus2/OBC2 \
 --output-path /data/train_data/old_bailey
 ```
+
+## post-ocr correction (pleias)
+
+NOTE: script technically untested, i processed from notebook (and then copied code to script)
+
+```
+uv run scripts/preprocessing/process_ocs_correction.py \
+--input-path /data/datasets/pleias-post-ocr-correction \
+--output-path /data/train_data/post-ocr-correction
+```
+
 
 ## split dataset
 
