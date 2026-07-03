@@ -10,8 +10,7 @@ from tokenizers.models import BPE
 from tokenizers.trainers import BpeTrainer
 from transformers import PreTrainedTokenizerFast
 
-train_data_dir_str: str = "/home/derek/external/datasets/training_data"
-output_base_path: str = "./tokenizer"
+
 VOCAB_SIZE: int = 32000
 
 SPECIAL_TOKENS: dict = {
@@ -50,13 +49,17 @@ def get_text_file_paths(path_sting: str) -> list[Path]:
     return data_filepaths
 
 
-def batch_iterator(file_paths: list[Path], batch_size=100):
+def batch_iterator(file_paths: list[Path], batch_size=100, replace_newlines: bool=False):
     """iterator over all data"""
     for i in range(0, len(file_paths), batch_size):
-        yield [f.read_text(encoding="utf-8", errors="replace") for f in file_paths[i : i + batch_size]]
+        yield [
+            f.read_text(encoding="utf-8", errors="replace").replace("\n", " ") if replace_newlines 
+            else f.read_text(encoding="utf-8", errors="replace")
+            for f in file_paths[i : i + batch_size]
+        ]
 
 
-def fit_new_tokenizer(data_filepaths: list[Path], vocab_size: int, batch_size: int) -> Tokenizer:
+def fit_new_tokenizer(data_filepaths: list[Path], vocab_size: int, batch_size: int, replace_newlines: bool) -> Tokenizer:
     """fit new tokenizer from data"""
 
     # BPE tokenizer with byte-level preprocessing
@@ -73,7 +76,12 @@ def fit_new_tokenizer(data_filepaths: list[Path], vocab_size: int, batch_size: i
         initial_alphabet=tokenizer.pre_tokenizer.alphabet(),
     )
 
-    tokenizer.train_from_iterator(batch_iterator(data_filepaths, batch_size=batch_size), trainer)
+    tokenizer.train_from_iterator(batch_iterator(
+        data_filepaths, 
+        batch_size=batch_size, 
+        replace_newlines=replace_newlines), 
+        trainer
+    )
 
     # since we need to specify the vocab, do this after fitting i guess
     eos_token = SPECIAL_TOKENS["eos_token"]
@@ -227,10 +235,11 @@ def main(args):
         file_paths,
         vocab_size=args.vocab_size,
         batch_size=args.batch_size,
+        replace_newlines=args.replace_newlines
     )
 
     # save tokenizer
-    out_path = save_tokenizer(tokenizer, args.output_dir)
+    out_path = save_tokenizer(tokenizer, args.output_path)
     if args.verbose:
         print(f"saved tokenizer to '{out_path}'\n")
 
@@ -246,7 +255,7 @@ def main(args):
     auto_tokenizer = create_transformers_tokenizer(tokenizer)
 
     # save autotokenizer
-    out_path = save_autotokenizer(auto_tokenizer, args.output_dir)
+    out_path = save_autotokenizer(auto_tokenizer, args.output_path)
     if args.verbose:
         print(f"saved transformers tokenizer to '{out_path}'\n")
 
@@ -255,7 +264,7 @@ def main(args):
     test_autotokenizer_functionality(auto_tokenizer)
     test_autotokenizer_chat_template(auto_tokenizer)
 
-    print(f"tokenizer fitting is done, see '{args.output_dir}'")
+    print(f"tokenizer fitting is done, see '{args.output_path}'")
 
 
 if __name__ == "__main__":
@@ -270,10 +279,10 @@ if __name__ == "__main__":
         "--dataset",
         type=str,
         required=True,
-        help="directory to save tokenizer to. default: ./tokenizer",
+        help="directory containing text files to train tokenizer on",
     )
     parser.add_argument(
-        "--output-dir",
+        "--output-path",
         type=str,
         default="./tokenizer",
         help="directory to save tokenizer to. default: ./tokenizer",
@@ -290,6 +299,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--batch-size", type=int, default=100, help="batch size for tokenizer fitting. default: 100"
     )
+    parser.add_argument("--replace-newlines", action="store_true", help="replace all newline characters with ' '")
     parser.add_argument("--verbose", action="store_true", help="enable verbose output")
     args = parser.parse_args()
 

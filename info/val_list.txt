@@ -4,7 +4,6 @@
 ./blbooks/1882_001862688.txt
 ./blbooks/1847_001272759.txt
 ./blbooks/1809_001487454.txt
-./blbooks/1896_001745619.txt
 ./blbooks/1834_001543964.txt
 ./blbooks/1853_002579498.txt
 ./blbooks/1866_003066153.txt
@@ -410,7 +409,6 @@
 ./post-ocr-correction/sn83030313-006026.txt
 ./post-ocr-correction/sn83030313-004108.txt
 ./post-ocr-correction/sn83030313-010344.txt
-./post-ocr-correction/sn99021999-002117.txt
 ./post-ocr-correction/sn99021999-010461.txt
 ./post-ocr-correction/sn99021999-015754.txt
 ./post-ocr-correction/sn99021999-016982.txt
@@ -574,7 +572,6 @@
 ./post-ocr-correction/sn83030313-003444.txt
 ./post-ocr-correction/sn99021999-014490.txt
 ./post-ocr-correction/sn83030313-006759.txt
-./post-ocr-correction/sn99021999-011256.txt
 ./post-ocr-correction/sn99021999-012215.txt
 ./post-ocr-correction/sn83030313-011846.txt
 ./post-ocr-correction/sn99021999-000142.txt
@@ -771,7 +768,6 @@
 ./gutenberg/pg14818.txt
 ./gutenberg/pg17452.txt
 ./gutenberg/pg43893.txt
-./gutenberg/pg6294.txt
 ./gutenberg/pg54968.txt
 ./gutenberg/pg53561.txt
 ./gutenberg/pg55189.txt
@@ -800,7 +796,6 @@
 ./gutenberg/pg15540.txt
 ./gutenberg/pg313.txt
 ./gutenberg/pg36923.txt
-./gutenberg/pg1228.txt
 ./gutenberg/pg37726.txt
 ./gutenberg/pg74471.txt
 ./gutenberg/pg61857.txt
@@ -813,7 +808,6 @@
 ./gutenberg/pg10372.txt
 ./gutenberg/pg47435.txt
 ./gutenberg/pg27758.txt
-./gutenberg/pg1110.txt
 ./gutenberg/pg54989.txt
 ./gutenberg/pg6102.txt
 ./gutenberg/pg29743.txt
@@ -822,7 +816,6 @@
 ./gutenberg/pg15336.txt
 ./gutenberg/pg33837.txt
 ./gutenberg/pg44262.txt
-./gutenberg/pg119.txt
 ./gutenberg/pg57906.txt
 ./gutenberg/pg51728.txt
 ./gutenberg/pg40073.txt
@@ -840,7 +833,6 @@
 ./gutenberg/pg48744.txt
 ./gutenberg/pg43770.txt
 ./gutenberg/pg48313.txt
-./gutenberg/pg5476.txt
 ./gutenberg/pg67706.txt
 ./gutenberg/pg6785.txt
 ./gutenberg/pg69135.txt
@@ -851,13 +843,11 @@
 ./gutenberg/pg38866.txt
 ./gutenberg/pg16772.txt
 ./gutenberg/pg40100.txt
-./gutenberg/pg2987.txt
 ./gutenberg/pg14179.txt
 ./gutenberg/pg7963.txt
 ./gutenberg/pg34919.txt
 ./gutenberg/pg37062.txt
 ./gutenberg/pg33387.txt
-./gutenberg/pg4125.txt
 ./gutenberg/pg24986.txt
 ./gutenberg/pg73575.txt
 ./gutenberg/pg23092.txt
@@ -933,7 +923,6 @@
 ./gutenberg/pg1573.txt
 ./gutenberg/pg29188.txt
 ./gutenberg/pg63497.txt
-./gutenberg/pg26998.txt
 ./gutenberg/pg43251.txt
 ./gutenberg/pg47488.txt
 ./gutenberg/pg74085.txt
@@ -965,7 +954,6 @@
 ./gutenberg/pg47119.txt
 ./gutenberg/pg41807.txt
 ./gutenberg/pg45784.txt
-./gutenberg/pg2969.txt
 ./gutenberg/pg74955.txt
 ./gutenberg/pg291.txt
 ./gutenberg/pg53259.txt

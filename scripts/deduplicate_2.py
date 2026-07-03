@@ -39,7 +39,7 @@ min_jaccard = 0.90
 min_containment = 0.95
 lmdb_data_is_loaded: bool = True
 # shrink if causing OOMs.
-# for me, this is using about <50 GB total
+# for me, this is using about 55 GB total
 LRU_CACHE_SIZE = 1_600
 
 

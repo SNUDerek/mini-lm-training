@@ -84,19 +84,21 @@ uv run scripts/create_val_split.py \
 --val-path /data/val_data
 ```
 
-## deduplication (WIP)
+## deduplication
 
-there are two WIP deduplication scripts that use `Simhash` to get candidate matches, then use exact jaccard similarity over word n-grams to folder the candidates. the scripts are still being worked on, and the identified matches will be added to the /info directory.
+there are two rough deduplication scripts that use `Simhash` to get candidate matches, then use exact jaccard similarity over word n-grams to folder the candidates. I then removed anything with `word_shingle_jaccard` or `word_shingle_containment` >= 0.90. Then I grouped using a graph, and kept the longest document in each connected component. CSV of the results is in ./info, along with final train and validation file lists.
 
 ## fit tokenizer
 
 creates a byte-pair encoding tokenizer, converts to `transformers` tokenizer with chatML template, and saves it.
 
+optional flag `--replace-newlines` replaces all newlines with spaces
+
 ```
 uv run scripts/fit_tokenizer.py \
---data-path /data/train_data \
---vocab-size 32000 \
---output-path /data/artifacts/tokenizer
+--dataset /data/train_data \
+--output-path /data/artifacts/tokenizer32K \
+--vocab-size 32000
 ```
 
 ### prepack datasets
