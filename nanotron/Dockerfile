@@ -48,8 +48,13 @@ RUN uv pip install \
     wheel \
     packaging
 
-RUN uv pip install \
-    "flash-attn>=2.5.0" \
-    --no-build-isolation
+# Force a local build against the installed PyTorch. FlashAttention's setup
+# script otherwise downloads a cached wheel, which can have an incompatible
+# PyTorch C++ ABI even when the package manager is told not to use wheels.
+RUN MAX_JOBS=4 FLASH_ATTENTION_FORCE_BUILD=TRUE \
+    uv pip install \
+    "flash-attn==2.8.3.post1" \
+    --no-build-isolation \
+    --no-binary flash-attn
 
 CMD ["/bin/bash"]

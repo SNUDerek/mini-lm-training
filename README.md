@@ -109,14 +109,14 @@ TODO: more complex dataset configuration such as dynamic chunking
 
 ```
 uv run scripts/prepack_data.py \
---tokenizer-path /data/artifacts/tokenizer/tokenizer \
+--tokenizer-path /data/artifacts/tokenizer32K/tokenizer \
 --data-path /data/val_data \
 --output-path /data/artifacts/val_dataset
 ```
 
 ```
 uv run scripts/prepack_data.py \
---tokenizer-path /data/artifacts/tokenizer/tokenizer \
+--tokenizer-path /data/artifacts/tokenizer32K/tokenizer \
 --data-path /data/train_data \
 --output-path /data/artifacts/train_dataset
 ```
@@ -135,6 +135,6 @@ docker build -t nanotron:latest ./nanotron
 - ai tools used: antigravity ide, gemini (web and ide extension), claude (web, claude code extension), openai gpt (web, codex extension)
 - unless indicated below, scripts by me, reviewed/corrected by AI:
     - Old Bailey XML parsing functions by chatgpt
-    - deduplication script outlined by me, drafted by AI, modified by me
+    - deduplication scripts about 50/50 between me and chatgpt over numerous iterations
     - nanotron Dockerfile by chatgpt
     - training code based on nanotron example, edited by me, corrected by AI

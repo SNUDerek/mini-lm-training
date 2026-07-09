@@ -1,0 +1,34 @@
+services:
+  pretraining:
+    image: nanotron:latest
+    working_dir: /workspace/nanotron/pretraining
+    volumes:
+      # set the phase here, based on the directories here
+      - ./pretraining:/workspace/nanotron/pretraining
+      # set the dataset location
+      - /home/derek/external/artifacts/train_dataset:/datasets/train_dataset:ro
+      # set the output directory
+      - /home/derek/external/logs/pretraining:/outputs
+      - huggingface-cache:/root/.cache/huggingface
+    environment:
+      # Override from the host if needed, for example:
+      # TORCHRUN_ARGS="--standalone --nnodes=1 --nproc-per-node=4" docker compose up
+      TORCHRUN_ARGS: ${TORCHRUN_ARGS:---standalone --nnodes=1 --nproc-per-node=1}
+      CUDA_DEVICE_MAX_CONNECTIONS: "1"
+      TORCH_NCCL_ASYNC_ERROR_HANDLING: "1"
+      WANDB_DIR: /outputs/wandb
+    command:
+      - /bin/bash
+      - -lc
+      - >-
+        exec python -m torch.distributed.run $${TORCHRUN_ARGS}
+        run_pretraining.py
+        --config-file config_200m_llama.yaml
+    gpus: all
+    ipc: host
+    init: true
+    stdin_open: true
+    tty: true
+
+volumes:
+  huggingface-cache:
