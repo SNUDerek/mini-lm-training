@@ -123,6 +123,23 @@ uv run scripts/prepack_data.py \
 
 ## training with huggingface
 
+first, create/edit a config yaml.
+
+then start training:
+
+```
+cd training
+uv python train.py --config <path>/<to>/<config>.yaml
+```
+
+can monitor with tensorboard: (*runs path specified in config yaml*)
+
+```
+uv run tensorboard --logdir <path>/<to>/<output_dir>/runs
+```
+
+### dockerize (todo)
+
 build the docker image
 
 ```
