@@ -121,12 +121,26 @@ uv run scripts/prepack_data.py \
 --output-path /data/artifacts/train_dataset
 ```
 
-## training
+## training with huggingface
 
-build docker
+build the docker image
+
+```
+docker build -t minillm:latest . --no-cache
+```
+
+## training with nanotron (WIP)
+
+build docker image - will take some time due to compiling Flash Attention
 
 ```
 docker build -t nanotron:latest ./nanotron
+```
+
+start docker container via docker compose
+
+```
+docker compose up -
 ```
 
 ## AI disclosure

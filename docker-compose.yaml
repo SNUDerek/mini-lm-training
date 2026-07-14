@@ -1,0 +1,19 @@
+services:
+  minillm-training:
+    image: minillm:latest
+    container_name: minillm-training
+    working_dir: /workspace/training
+    volumes:
+      # mount training code
+      - ./training:/workspace/training
+      # TODO: mount output directories as specified in config
+    # environment:
+    # command:
+    gpus: all
+    ipc: host
+    init: true
+    stdin_open: true
+    tty: true
+
+volumes:
+  huggingface-cache:

@@ -1,6 +1,7 @@
 services:
-  pretraining:
+  nanotron-training:
     image: nanotron:latest
+    container_name: nanotron-training
     working_dir: /workspace/nanotron/pretraining
     volumes:
       # set the phase here, based on the directories here
