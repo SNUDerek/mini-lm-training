@@ -138,6 +138,17 @@ can monitor with tensorboard: (*runs path specified in config yaml*)
 uv run tensorboard --logdir <path>/<to>/<output_dir>/runs
 ```
 
+test decoding with the model:
+
+```
+uv run python training/generate.py \
+  --config <path>/<to>/<config>.yaml \
+  --max-new-tokens 200 \
+  --temperature 0.85 \
+  --top-p 0.95 \
+  --top-k 50
+```
+
 ### dockerize (todo)
 
 build the docker image
